@@ -1,12 +1,13 @@
 #include <stdio.h>
 
 /**
- *description: main - begining of the code
- * return: should be 0
+ * main - begining of the code
+ * @void: return value
+ * Return: should be 0
  */
 
 int main (void)
 {
-puts("\"Programming is like building a multilingual puzzle");
-return (0);
+	puts("\"Programming is like building a multilingual puzzle");
+	return (0);
 }

@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 /**
- * main - begining of the code
+ *description: main - begining of the code
  * return: should be 0
  */
 
-int main ()
+int main (void)
 {
 	puts("\"Programming is like building a multilingual puzzle");
 	return (0);

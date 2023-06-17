@@ -2,8 +2,8 @@
 
 /**
  * main - begigining of the programm
- * @void : return type
- * Return : always 0
+ * @void: return type
+ * Return: always 0
  */
 
 int main(void)

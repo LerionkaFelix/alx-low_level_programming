@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - begining of the code 
- * @void : return value
- * Return : should be 0
+ * main - begining of the code
+ * @void: return value
+ * Return: should be 0
  */
 
 int main(void)

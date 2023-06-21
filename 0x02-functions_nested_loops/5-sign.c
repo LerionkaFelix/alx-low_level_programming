@@ -2,7 +2,7 @@
 
 /**
  * print_sign - prints sign of a number
- * @c: checks for lowercase numbers
+ * @n: checks for sign
  * Return: dependent
  */
 
@@ -21,7 +21,7 @@ int print_sign(int n)
 	else
 	{
 		_putchar('-');
-		return (-1);;
+		return (-1);
 	}
 	_putchar('\n');
 }

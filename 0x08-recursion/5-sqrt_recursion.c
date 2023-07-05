@@ -33,6 +33,6 @@ return (-1);
 if (num1 * num1 == num2)
 return (num1);
 
-return (calculate_sqrt(num1 + 1, num2));
+return (calc_natural_root(num1 + 1, num2));
 }
 

@@ -1,12 +1,5 @@
 #include "main.h"
-/**
-*calc_natural_root - calculates and returns the natural square root of a number
-*
-*@num1: parameter for possible root value
-*@num2: parameter for the number whose root is to be calculated
-*
-*Return: -1 or natural root of a number
-*/
+
 int calc_natural_root(int num1, int num2);
 
 /**
@@ -24,12 +17,12 @@ return (calc_natural_root(0, n));
 }
 
 /**
-*calculate_sqrt - prints the natural square root of a number
+*calc_natural_root - calculates and returns the natural square root of a number
 *
-*@num1: iterator
-*@num2: parameter for number to find its square root
+*@num1: iterator for possible root value
+*@num2: parameter for the number whose root is to be calculated
 *
-*Return: -1 or sqrt of a number
+*Return: -1 or natural root of a number
 */
 int calc_natural_root(int num1, int num2)
 {

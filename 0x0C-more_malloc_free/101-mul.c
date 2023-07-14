@@ -1,100 +1,150 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include <stdlib.h>
+
+int conf_digit(int c);
+int conf_number(char *num);
+int conv_to_int(char *s);
+int stringlen(char *s);
+int mul(char *num1, char *num2);
 
 /**
- * is_digit - checks if a string contains a non-digit char
- * @s: string to be evaluated
- *
- * Return: 0 if a non-digit is found, 1 otherwise
- */
-int is_digit(char *s)
-{
-	int i = 0;
+*main - final execution of code
+*@argc: number of arguments
+*@argv: array of arguments
+*Return: 0
+*/
 
-	while (s[i])
+int main(int argc, char *argv[])
+{
+	int product;
+
+	if (argc != 3)
 	{
-		if (s[i] < '0' || s[i] > '9')
-			return (0);
-		i++;
+		printf("Error\n");
+		exit (98);
 	}
+
+	if (!conf_number(argv[1]) || !conf_number(argv[2]))
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
+	product = mul(argv[1], argv[2]);
+	printf("%d\n", product);
+	free(product);
+	
+    	return (0);
+}
+
+/**
+*  conf_digit -confirms if digits
+*  @c: parameter for passing argument
+*  Return: 0 or 1
+*/
+int conf_digit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+	return (1);
+	}
+
+	else
+	{
+	return (0);
+	}
+}
+
+/**
+*conf_number - confirms if number
+*@num: pointer to value
+*return 0 or 1;
+*/
+
+int conf_number(char *num)
+{
+	int iter = 0;
+	
+	do {
+		if (!conf_digit(num[iter]))
+			return (0);
+		iter++;
+	} while (num[iter]);
+	
 	return (1);
 }
 
 /**
- * _strlen - returns the length of a string
- * @s: string to evaluate
- *
- * Return: the length of the string
- */
-int _strlen(char *s)
-{
-	int i = 0;
+* conv_to_int - string converterto an integer
+*
+* @s: takes for string passed
+*
+* Return: string
+*/
 
-	while (s[i] != '\0')
+int conv_to_int(char *s)
+{
+	int all = stringlen(s);
+	int value;
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	int d = 0;
+
+	while (a < all && b == 0)
 	{
-		i++;
-	}
-	return (i);
-}
-
-/**
- * errors - handles errors for main
- */
-void errors(void)
-{
-	printf("Error\n");
-	exit(98);
-}
-
-/**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
- *
- * Return: always 0 (Success)
- */
-int main(int argc, char *argv[])
-{
-	char *s1, *s2;
-	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
-
-	s1 = argv[1], s2 = argv[2];
-	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		errors();
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-	len = len1 + len2 + 1;
-	result = malloc(sizeof(int) * len);
-	if (!result)
-		return (1);
-	for (i = 0; i <= len1 + len2; i++)
-		result[i] = 0;
-	for (len1 = len1 - 1; len1 >= 0; len1--)
-	{
-		digit1 = s1[len1] - '0';
-		carry = 0;
-		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		if (s[a] == '-')
+			++c;
+		if (s[a] >= '0' && s[a] <= '9')
 		{
-			digit2 = s2[len2] - '0';
-			carry += result[len1 + len2 + 1] + (digit1 * digit2);
-			result[len1 + len2 + 1] = carry % 10;
-			carry /= 10;
+			value = s[a] - '0';
+
+			if (c % 2)
+				value = -value;
+			d = d * 10 + value;
+			b = 1;
+			if (s[a + 1] < '0' || s[a + 1] > '9')
+				break;
+			b = 0;
 		}
-		if (carry > 0)
-			result[len1 + len2 + 1] += carry;
+		a++;
 	}
-	for (i = 0; i < len - 1; i++)
-	{
-		if (result[i])
-			a = 1;
-		if (a)
-			_putchar(result[i] + '0');
-	}
-	if (!a)
-		_putchar('0');
-	_putchar('\n');
-	free(result);
-	return (0);
+	if (b == 0)
+		return (0);
+
+	return (d);
+}
+/**
+ * stringlen -prints length of a string
+ *
+ * @s: pointer to a string
+ *
+ * Return: length
+ *
+ */
+int stringlen(char *s)
+{
+	int len;
+
+	for (len = 0; s[len] != '\0';)
+		len++;
+
+	return (len);
+}
+
+/**
+*mul -  multiplies two positive numbers
+*@num1: pointer to first positive number
+*@num2: pointer to second positive number
+*Return: product
+*/
+
+int mul(char *num1, char *num2)
+{
+	int y = conv_to_int(num1);
+	int x = conv_to_int(num2);
+	int product = x * y;
+	
+	return(product);
 }
 

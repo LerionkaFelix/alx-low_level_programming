@@ -16,7 +16,7 @@ int mul(char *num1, char *num2);
 
 int main(int argc, char *argv[])
 {
-	int *product = malloc(sizeof(int) * 1);
+	int product;
 
 	if (argc != 3)
 	{
@@ -30,9 +30,8 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	*product = mul(argv[1], argv[2]);
-	printf("%d\n", *product);
-	free(product);
+	product = mul(argv[1], argv[2]);
+	printf("%d\n", product);
 	
     	return (0);
 }

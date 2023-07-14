@@ -1,92 +1,46 @@
-#include "main.h"
 #include <stdlib.h>
-
-char *strn_concat(char *str1, char *str2, int m);
-int str_len(char *str);
-char *cpy_str(char *s1, char *s2);
+#include "main.h"
 
 /**
-*string_nconcat -  function that concatenates two strings
-*@s1: pointer to first string
-*@s2: pointer to second string
-*@n: length
-*Return: null or string
-*/
-
+ * *string_nconcat - concatenates n bytes of a string to another string
+ * @s1: string to append to
+ * @s2: string to concatenate from
+ * @n: number of bytes from s2 to concatenate to s1
+ *
+ * Return: pointer to the resulting string
+ */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *str;
+	char *s;
+	unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
 
-	if (!s1 || !s2)
+	while (s1 && s1[len1])
+		len1++;
+	while (s2 && s2[len2])
+		len2++;
+
+	if (n < len2)
+		s = malloc(sizeof(char) * (len1 + n + 1));
+	else
+		s = malloc(sizeof(char) * (len1 + len2 + 1));
+
+	if (!s)
 		return (NULL);
-	if (n >= (unsigned int)str_len(s2))
-		n = str_len(s2);
 
-	str = (char *)malloc(str_len(s1) + n + 1);
-	if (!str)
-		return (NULL);
-
-	cpy_str(str, s1);
-	strn_concat(str, s2, n);
-	return (str);
-}
-
-/**
-* strn_concat  - concatinates strings
-*
-* @str1: first pointer argument
-* @str2: second pointer argument
-* @m: parameter for extent of string
-*
-* Return: joined strings
-*/
-char *strn_concat(char *str1, char *str2, int m)
-{
-	int n, o;
-
-	n = str_len(str1);
-
-	for (o = 0; o < m && str2[o] != '\0'; o++)
-		str1[n + o] = str2[o];
-	str1[n + o] = '\0';
-
-	return (str1);
-}
-
-/**
-* cpy_str -  copies the string pointed to by src
-*
-* @s1: parameter for passing string value
-* @s2: parameter for passing the string
-*Return: copied string
-*/
-char *cpy_str(char *s1, char *s2)
-{
-	int m, n;
-
-	m = str_len(s2);
-	n = 0;
-
-	do {
-		s1[n] = s2[n];
-		n++;
-	} while (n < m);
-
-	s1[n] = '\0';
-
-	return (s1);
-}
-/**
-*str_len - finds string's length
-*@str: pointer to a string
-*Return: length of string
-*/
-int str_len(char *str)
-{
-	int i;
-
-	for (i = 0; str[i] != '\0';)
+	while (i < len1)
+	{
+		s[i] = s1[i];
 		i++;
-	return (i);
+	}
+
+	while (n < len2 && i < (len1 + n))
+		s[i++] = s2[j++];
+
+	while (n >= len2 && i < (len1 + len2))
+		s[i++] = s2[j++];
+
+	s[i] = '\0';
+
+	return (s);
 }
 

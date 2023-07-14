@@ -32,7 +32,7 @@ exit(98);
 
 product = mul(argv[1], argv[2]);
 printf("%d\n", product);
-free(product);
+/*free(product);*/
 
 return (0);
 }

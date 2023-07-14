@@ -32,7 +32,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 }
 
 /**
-* strn_concat  - concatenates strings
+* strn_concat  - concatinates strings
 *
 * @str1: first pointer argument
 * @str2: second pointer argument
@@ -62,17 +62,17 @@ char *strn_concat(char *str1, char *str2, int m)
 */
 char *cpy_str(char *s1, char *s2)
 {
-	int x, y;
+	int m, n;
 
-	x = str_len(s2);
-	y = 0;
+	m = str_len(s2);
+	n = 0;
 
 	do {
-		s1[y] = s2[y];
-		y++;
-	} while (y < x);
+		s1[n] = s2[n];
+		n++;
+	} while (n < m);
 
-	s1[y] = '\0';
+	s1[n] = '\0';
 
 	return (s1);
 }

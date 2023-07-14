@@ -42,11 +42,11 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 */
 char *strn_concat(char *str1, char *str2, int m)
 {
-	int n, o = 0;
+	int n, o;
 
 	n = str_len(str1);
 
-	for (; o < m && str2[o] != '\0'; o++)
+	for (o = 0; o < m && str2[o] != '\0'; o++)
 		str1[n + o] = str2[o];
 	str1[n + o] = '\0';
 
@@ -83,9 +83,9 @@ char *cpy_str(char *s1, char *s2)
 */
 int str_len(char *str)
 {
-	int i = 0;
+	int i;
 
-	for (; str[i] != '\0';)
+	for (i = 0; str[i] != '\0';)
 		i++;
 	return (i);
 }

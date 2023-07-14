@@ -16,24 +16,25 @@ int mul(char *num1, char *num2);
 
 int main(int argc, char *argv[])
 {
-	int product;
+int product;
 
-	if (argc != 3)
-	{
-		printf("Error\n");
-		exit (98);
-	}
+if (argc != 3)
+{
+printf("Error\n");
+exit (98);
+}
 
-	if (!conf_number(argv[1]) || !conf_number(argv[2]))
-	{
-		printf("Error\n");
-		exit(98);
-	}
+if (!conf_number(argv[1]) || !conf_number(argv[2]))
+{
+printf("Error\n");
+exit(98);
+}
 
-	product = mul(argv[1], argv[2]);
-	printf("%d\n", product);
-	
-    	return (0);
+product = mul(argv[1], argv[2]);
+printf("%d\n", product);
+free(product);
+
+return (0);
 }
 
 /**
@@ -43,15 +44,15 @@ int main(int argc, char *argv[])
 */
 int conf_digit(int c)
 {
-	if (c >= '0' && c <= '9')
-	{
-	return (1);
-	}
+if (c >= '0' && c <= '9')
+{
+return (1);
+}
 
-	else
-	{
-	return (0);
-	}
+else
+{
+return (0);
+}
 }
 
 /**
@@ -62,15 +63,15 @@ int conf_digit(int c)
 
 int conf_number(char *num)
 {
-	int iter = 0;
-	
-	do {
-		if (!conf_digit(num[iter]))
-			return (0);
-		iter++;
-	} while (num[iter]);
-	
-	return (1);
+int iter = 0;
+
+do {
+if (!conf_digit(num[iter]))
+	return (0);
+iter++;
+} while (num[iter]);
+
+return (1);
 }
 
 /**
@@ -83,52 +84,52 @@ int conf_number(char *num)
 
 int conv_to_int(char *s)
 {
-	int all = stringlen(s);
-	int value;
-	int a = 0;
-	int b = 0;
-	int c = 0;
-	int d = 0;
+int all = stringlen(s);
+int value;
+int a = 0;
+int b = 0;
+int c = 0;
+int d = 0;
 
-	while (a < all && b == 0)
-	{
-		if (s[a] == '-')
-			++c;
-		if (s[a] >= '0' && s[a] <= '9')
-		{
-			value = s[a] - '0';
+while (a < all && b == 0)
+{
+if (s[a] == '-')
+	++c;
+if (s[a] >= '0' && s[a] <= '9')
+{
+	value = s[a] - '0';
 
-			if (c % 2)
-				value = -value;
-			d = d * 10 + value;
-			b = 1;
-			if (s[a + 1] < '0' || s[a + 1] > '9')
-				break;
-			b = 0;
-		}
-		a++;
-	}
-	if (b == 0)
-		return (0);
+	if (c % 2)
+		value = -value;
+	d = d * 10 + value;
+	b = 1;
+	if (s[a + 1] < '0' || s[a + 1] > '9')
+		break;
+	b = 0;
+}
+a++;
+}
+if (b == 0)
+return (0);
 
-	return (d);
+return (d);
 }
 /**
- * stringlen -prints length of a string
- *
- * @s: pointer to a string
- *
- * Return: length
- *
- */
+* stringlen -prints length of a string
+*
+* @s: pointer to a string
+*
+* Return: length
+*
+*/
 int stringlen(char *s)
 {
-	int len;
+int len;
 
-	for (len = 0; s[len] != '\0';)
-		len++;
+for (len = 0; s[len] != '\0';)
+len++;
 
-	return (len);
+return (len);
 }
 
 /**
@@ -140,10 +141,10 @@ int stringlen(char *s)
 
 int mul(char *num1, char *num2)
 {
-	int y = conv_to_int(num1);
-	int x = conv_to_int(num2);
-	int product = x * y;
-	
-	return(product);
+int y = conv_to_int(num1);
+int x = conv_to_int(num2);
+int product = x * y;
+
+return(product);
 }
 

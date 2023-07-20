@@ -8,7 +8,7 @@
  * Return: pointer to the function that corresponds to the
  * operator given as a parameter
  */
-int (*get_op_func(char *s))(int, int)
+int (*get_op_func(char *s))(int a, int b)
 {
 	op_t ops[] = {
 		{"+", op_add},
@@ -24,7 +24,7 @@ int (*get_op_func(char *s))(int, int)
 
 	while (ops[i].op)
 	{
-		if (strcmp(ops[i].op, s) == 0)
+		if (*s == *ops[i].op)
 			return (ops[i].f);
 		i++;
 	}

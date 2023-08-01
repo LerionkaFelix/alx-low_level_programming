@@ -6,20 +6,20 @@
  * Return: head node's data if success, zero otherwise
  */
 
+
 int pop_listint(listint_t **head)
 {
-        listint_t *tempptr;
-        int headnum;
+	listint_t *current_node;
+	int res;
 
-        if (!*head || !head)
-                return (0);
-
-        headnum = (*head)->n;
-        tempptr = (*head)->next;
-
-        free(*head);
-        *head = tempptr;
-
-        return (headnum);
+	if (((*head) == NULL) || head == NULL)
+	{
+		return (0);
+	}
+	current_node = *head;
+	res = current_node->n;
+	*head = (*head)->next;
+	free(current_node);
+	return (res);
 }
 

@@ -8,8 +8,7 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int total, power;
-	int len;
+	unsigned int total, power, len;
 
 	if (!b)
 		return (0);

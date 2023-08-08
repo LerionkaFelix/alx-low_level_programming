@@ -9,39 +9,29 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-int fp;
-ssize_t counter, check;
-char *info;
+	int inpf;
+	ssize_t words_read, words_written;
+	char *buff;
 
-if (filename == NULL)
-return (0);
+	if (!filename)
+		return (0);
 
-fp = open(filename, O_RDONLY);
+	inpf = open(filename, O_RDONLY);
 
-if (fp == -1)
-return (0);
+	if (inpf == -1)
+		return (0);
 
-info = malloc(sizeof(char) * letters);
+	buff = malloc(sizeof(char) * (letters));
+	if (!buff)
+		return (0);
 
-if (info == NULL)
-{
-close(fp);
-return (0);
-}
+	words_read = read(inpf, buff, letters);
+	words_written = write(STDOUT_FILENO, buff, words_read);
 
-counter = read(fp, info, letters);
-close(fp);
-if (counter == -1)
-{
-free(info);
-return (0);
-}
-check = write(STDOUT_FILENO, info, counter);
-free(info);
+	close(inpf);
 
-if (check != counter)
-return (0);
+	free(buff);
 
-return (check);
+	return (words_written);
 }
 
